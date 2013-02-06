@@ -12,7 +12,7 @@
 @black:                 #000;
 @grayDarker:            #222;
 @grayDark:              #333;
-@gray:                  #555;
+@gray:                  #4C4C4C;
 @grayLight:             #999;
 @grayLighter:           #eee;
 @white:                 #fff;
@@ -32,19 +32,19 @@
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        @white;
-@textColor:             @grayDark;
+@bodyBackground:        @grayDarker;
+@textColor:             @white;
 
 
 // Links
 // -------------------------
-@linkColor:             #08c;
-@linkColorHover:        darken(@linkColor, 15%);
+@linkColor:             lighten(@textColor, 10%);
+@linkColorHover:        @orange;
 
 
 // Typography
 // -------------------------
-@sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+@sansFontFamily:        Arial, sans-serif;
 @serifFontFamily:       Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
 
@@ -53,8 +53,8 @@
 @baseLineHeight:        20px;
 @altFontFamily:         @serifFontFamily;
 
-@headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
-@headingsFontWeight:    bold;    // instead of browser default, bold
+@headingsFontFamily:    "Gill Sans", "Gill Sans Regular", Arial, sans-serif;
+@headingsFontWeight:    normal;    // instead of browser default, bold
 @headingsColor:         inherit; // empty to use BS default, @textColor
 
 
@@ -67,8 +67,8 @@
 @fontSizeMini:          @baseFontSize * 0.75; // ~11px
 
 @paddingLarge:          11px 19px; // 44px
-@paddingSmall:          2px 10px;  // 26px
-@paddingMini:           0 6px;   // 22px
+@paddingSmall:          2px 16px;  // 26px
+@paddingMini:           0 8px;   // 22px
 
 @baseBorderRadius:      4px;
 @borderRadiusLarge:     6px;
@@ -185,10 +185,10 @@
 @navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
 @navbarBorder:                    darken(@navbarBackground, 12%);
 
-@navbarText:                      #777;
-@navbarLinkColor:                 #777;
-@navbarLinkColorHover:            @grayDark;
-@navbarLinkColorActive:           @gray;
+@navbarText:                      @grayLighter;
+@navbarLinkColor:                 @grayLighter;
+@navbarLinkColorHover:            @grayLight;
+@navbarLinkColorActive:           @grayLight;
 @navbarLinkBackgroundHover:       transparent;
 @navbarLinkBackgroundActive:      darken(@navbarBackground, 5%);
 
@@ -271,19 +271,19 @@
 
 // Default 940px grid
 // -------------------------
-@gridColumns:             12;
-@gridColumnWidth:         60px;
-@gridGutterWidth:         20px;
+@gridColumns:             31;
+@gridColumnWidth:         16px;
+@gridGutterWidth:         16px;
 @gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 
 // 1200px min
-@gridColumnWidth1200:     70px;
-@gridGutterWidth1200:     30px;
+@gridColumnWidth1200:     16px;
+@gridGutterWidth1200:     16px;
 @gridRowWidth1200:        (@gridColumns * @gridColumnWidth1200) + (@gridGutterWidth1200 * (@gridColumns - 1));
 
 // 768px-979px
-@gridColumnWidth768:      42px;
-@gridGutterWidth768:      20px;
+@gridColumnWidth768:      16px;
+@gridGutterWidth768:      16px;
 @gridRowWidth768:         (@gridColumns * @gridColumnWidth768) + (@gridGutterWidth768 * (@gridColumns - 1));
 
 

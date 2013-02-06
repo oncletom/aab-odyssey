@@ -8,8 +8,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jshint', 'test']);
-  grunt.registerTask('build', ['concat', 'handlebars', 'uglify', 'copy']);
+  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('build', ['concat', 'less', 'handlebars', 'uglify', 'copy:dist']);
 
   // Project configuration.
   grunt.initConfig({
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      core: {
+      dist: {
         files: [
           { cwd: 'src/', src: ['*'], dest: 'dist/', filter: 'isFile', expand: true },
           { cwd: 'src/', src: ['assets/**'], dest: 'dist/assets/', expand: true }
@@ -86,18 +86,18 @@ module.exports = function(grunt) {
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile', 'copy']
+        tasks: ['jshint:gruntfile']
       },
       js: {
         files: '<%= uglify.core.src %>',
         tasks: [ 'uglify', 'copy', 'jshint' ]
       },
       less: {
-        files: '',
+        files: 'src/less/**/*.less',
         tasks: [ 'less', 'copy' ]
       },
       templates: {
-        files: 'src/templates/*.hbs',
+        files: [ 'src/*.html', 'src/templates/*.hbs' ],
         tasks: [ 'handlebars', 'uglify', 'copy' ]
       }
     }

@@ -1,0 +1,24 @@
+.navbar-inner{
+  background: hsla(hue(@navbarBackground), saturation(@navbarBackground), lightness(@navbarBackground), 0.15);
+
+  .navbar-static-top &{
+    .box-shadow(none);
+  }
+}
+
+.navbar .nav > li,
+.navbar .brand{
+  border-right: 1px solid @navbarBorder;
+}
+
+.navbar .brand,
+.navbar .nav > li > a{
+  text-shadow: 0 1px 0 @grayDark;
+}
+
+.navbar .brand{
+  @letters_margins: 4px;
+
+  font-family: @headingsFontFamily;
+  padding: (((@navbarHeight - @baseLineHeight) / 2) - @letters_margins) 20px (((@navbarHeight - @baseLineHeight) / 2) - @letters_margins);
+}
