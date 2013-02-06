@@ -13,8 +13,14 @@
 
 .navbar .brand,
 .navbar .nav > li > a{
+  border-bottom: 4px solid transparent;
   text-shadow: 0 1px 0 @grayDark;
 }
+  .navbar .nav > li > a:hover,
+  .navbar .nav > li > a:focus,
+  .navbar .nav > .active > a{
+    border-color: @white;
+  }
 
 .navbar .brand{
   @letters_margins: 4px;
