@@ -1,5 +1,15 @@
 /*global module:false*/
 module.exports = function(grunt) {
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('default', ['jshint', 'test']);
+  grunt.registerTask('build', ['concat', 'handlebars', 'uglify', 'copy']);
 
   // Project configuration.
   grunt.initConfig({
@@ -13,21 +23,42 @@ module.exports = function(grunt) {
     // Task configuration.
     concat: {
       options: {
-        banner: '<%= banner %>',
         stripBanners: true
       },
-      dist: {
-        src: ['lib/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
+      jquip: {
+        src: [ 'components/jquip/src/jquip.js', 'components/jquip/src/jquip.ajax.js' ],
+        dest: 'src/vendor/jquip.js'
+      }
+    },
+    handlebars: {
+      core: {
+        files: {
+          'src/vendor/templates.js': 'src/templates/*.hbs'
+        },
+        options: {
+          namespace: 'AAB',
+          wrapped: true
+        }
       }
     },
     uglify: {
       options: {
         banner: '<%= banner %>'
       },
-      dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
+      core: {
+        src: [ 'src/vendor/jquip.js', 'components/handlebars/handlebars.runtime.js', 'src/vendor/templates.js' ],
+        dest: 'dist/js/core.min.js'
+      }
+    },
+    less: {
+      core: {
+        options: {
+          paths: [ 'src/less/lib', 'src/less/includes', 'components/bootstrap/less' ],
+          yuicompress: true
+        },
+        files: {
+          'dist/css/core.css': 'src/less/core.less'
+        }
       }
     },
     jshint: {
@@ -44,25 +75,31 @@ module.exports = function(grunt) {
         src: ['lib/**/*.js', 'test/**/*.js']
       }
     },
+    copy: {
+      core: {
+        files: [
+          { cwd: 'src/', src: ['*'], dest: 'dist/', filter: 'isFile', expand: true },
+          { cwd: 'src/', src: ['assets/**'], dest: 'dist/assets/', expand: true }
+        ]
+      }
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
+        tasks: ['jshint:gruntfile', 'copy']
       },
-      lib_test: {
-        files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'qunit']
+      js: {
+        files: '<%= uglify.core.src %>',
+        tasks: [ 'uglify', 'copy', 'jshint' ]
+      },
+      less: {
+        files: '',
+        tasks: [ 'less', 'copy' ]
+      },
+      templates: {
+        files: 'src/templates/*.hbs',
+        tasks: [ 'handlebars', 'uglify', 'copy' ]
       }
     }
   });
-
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
-
 };

@@ -3,6 +3,7 @@
   "version": "1.0.0-dev",
   "dependencies": {
     "bootstrap": "~2.2.2",
-    "jquip": "latest"
+    "jquip": "latest",
+    "handlebars": "~1.0.0-rc.2"
   }
 }

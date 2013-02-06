@@ -2,7 +2,7 @@
   "name": "aab-odyssey",
   "version": "1.0.0-dev",
   "description": "A journey into the flow of broadcasting.",
-  "main": "index.js",
+  "main": "grunt Gruntfile.js",
   "scripts": {
     "test": "casper test tests/cases"
   },
@@ -16,12 +16,13 @@
   "readmeFilename": "README.md",
   "dependencies": {},
   "devDependencies": {
-    "grunt-contrib-less": "~0.3.2",
+    "grunt-contrib-less": "~0.5.0rc7",
     "grunt": "~0.4.0rc7",
-    "grunt-contrib-jshint": "~0.1.0",
-    "grunt-contrib-watch": "~0.1.4",
-    "grunt-contrib-handlebars": "~0.3.4",
-    "grunt-contrib-uglify": "~0.1.0",
-    "grunt-contrib-concat": "~0.1.1"
+    "grunt-contrib-jshint": "~0.1.1rc6",
+    "grunt-contrib-watch": "~0.2.0rc7",
+    "grunt-contrib-handlebars": "~0.5.3rc7",
+    "grunt-contrib-uglify": "~0.1.1rc6",
+    "grunt-contrib-concat": "~0.1.2rc6",
+    "grunt-contrib-copy": "~0.4.0rc7"
   }
 }
