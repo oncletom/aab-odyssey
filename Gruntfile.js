@@ -96,8 +96,12 @@ module.exports = function(grunt) {
         files: 'src/less/**/*.less',
         tasks: [ 'less', 'copy' ]
       },
+      html: {
+        files: [ 'src/**/*.html' ],
+        tasks: [ 'copy' ]
+      },
       templates: {
-        files: [ 'src/*.html', 'src/templates/*.hbs' ],
+        files: [ 'src/templates/*.hbs' ],
         tasks: [ 'handlebars', 'uglify', 'copy' ]
       }
     }
