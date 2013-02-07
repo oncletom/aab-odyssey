@@ -1,7 +1,16 @@
-/**
- * Created with JetBrains WebStorm.
- * User: oncletom
- * Date: 05/02/13
- * Time: 16:58
- * To change this template use File | Settings | File Templates.
- */
+function Channel(){
+
+}
+
+Channel.getList = function getList(callback){
+  $.getJSON('http://rd-broadcast-bookmarks.herokuapp.com/channels', function(response){
+    var channels = [];
+
+    // mapping object values to channel array
+    channels = Object.keys(response).map(function(key){
+      return response[key];
+    });
+
+    callback(channels);
+  });
+};
