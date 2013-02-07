@@ -12,19 +12,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 </head>
-<body id="top">
+<body id="top" data-api-baseuri="http://rd-broadcast-bookmarks.herokuapp.com/" data-api-userid="tparisot">
 
 <div class="navbar navbar-static-top">
     <div class="navbar-inner">
         <div class="container">
             <a class="brand" href="#top"><span class="blq-masterbrand"><span>A</span><span>A</span><span>B</span></span> Odyssey</a>
 
-            <ul class="nav hide" data-state-visible="channel-schedule">
-                <li class="active"><a href="#">BBC One</a></li>
-                <li><a href="#">BBC Two</a></li>
-                <li><a href="#">BBC Three</a></li>
-                <li><a href="#">BBC Four</a></li>
-            </ul>
+            <ul class="nav hide" data-state-visible="channel-schedule" data-template="channel-schedule" data-variation="nav"></ul>
         </div>
     </div>
 </div>
@@ -50,32 +45,11 @@
 
                 <p>You can browse the TV schedules for the following channels.</p>
 
-                <div class="row">
-                    <div class="span6 service">
-                        <a href="#bbc_one">
-                            <img src="http://rd-broadcast-bookmarks.herokuapp.com/img/channels/bbc_one.jpg" alt="BBC One">
-                        </a>
-                    </div>
-                    <div class="span6 service">
-                        <a href="#bbc_two">
-                            <img src="http://rd-broadcast-bookmarks.herokuapp.com/img/channels/bbc_two.jpg" alt="BBC Two">
-                        </a>
-                    </div>
-                    <div class="span6 service">
-                        <a href="#bbc_three">
-                            <img src="http://rd-broadcast-bookmarks.herokuapp.com/img/channels/bbc_three.jpg" alt="BBC Three">
-                        </a>
-                    </div>
-                    <div class="span6 service">
-                        <a href="#bbc_four">
-                            <img src="http://rd-broadcast-bookmarks.herokuapp.com/img/channels/bbc_four.jpg" alt="BBC Four">
-                        </a>
-                    </div>
-                </div>
+                <div class="row" data-template="channels-list" data-loader></div>
             </div>
         </div>
 
-        <div id="channel-schedule">
+        <div id="channel-schedule" class="hide" data-state-visible="channel-schedule">
             <div class="masthead">
                 <p class="title">BBC One Schedule</p>
 
@@ -84,71 +58,7 @@
                 </div>
             </div>
 
-            <div class="component schedule-container">
-                <dl class="component timeline timeline-vertical">
-                    <dt class="title">Saturday, 26th of February</dt>
-                    <dt class="subtitle"><span>1 am</span></dt>
-                    <dd class="broadcast" data-episode-id="b01q3ry3">
-                        <a href="http://www.bbc.co.uk/programmes/b01q3ry3">
-                            <span class="title">Weatherview</span>
-                            <span class="time-starts">1:00am</span>
-                            <span class="duration">5 minutes</span>
-                        </a>
-                    </dd>
-                    <dd class="broadcast" data-episode-id="b01q3ry5">
-                        <a href="http://www.bbc.co.uk/programmes/b01q3ry5">
-                            <span class="title">Joins BBC News</span>
-                            <span class="time-starts">1:05am</span>
-                            <span class="duration">5 hours</span>
-                        </a>
-                    </dd>
-                    <dt class="subtitle"><span>6am</span></dt>
-                    <dd class="broadcast" data-episode-id="b01q3rz0">
-                        <a href="http://www.bbc.co.uk/programmes/b01q3rz0">
-                            <span class="title">Breakfast</span>
-                            <span class="time-starts">6:00am</span>
-                            <span class="duration">4 hours</span>
-                        </a>
-                    </dd>
-                    <dt class="subtitle"><span>10am</span></dt>
-                    <dd class="broadcast" data-episode-id="b01qh21k">
-                        <a href="http://www.bbc.co.uk/programmes/b01qh21k">
-                            <span class="title">Saturday Kitchen</span>
-                            <span class="time-starts">10:00am</span>
-                            <span class="duration">90 minutes</span>
-                        </a>
-                    </dd>
-                    <dt class="subtitle"><span>11am</span></dt>
-                    <dd class="broadcast" data-episode-id="b012qnq2">
-                        <a href="http://www.bbc.co.uk/programmes/b012qnq2">
-                            <span class="title">The Good Cook</span>
-                            <span class="time-starts">11:30am</span>
-                            <span class="duration">30 minutes</span>
-                        </a>
-                    </dd>
-                    <dt class="subtitle"><span>12pm</span></dt>
-                    <dd class="broadcast" data-episode-id="b01q3rz2">
-                        <a href="http://www.bbc.co.uk/programmes/b01q3rz2">
-                            <span class="title">BBC Weekend News</span>
-                            <span class="time-starts">12:00pm</span>
-                            <span class="duration">10 minutes</span>
-                        </a>
-                    </dd>
-                    <dd class="broadcast" data-episode-id="b01q3stc">
-                        <a href="http://www.bbc.co.uk/programmes/b01q3stc">
-                            <span class="title">BBC London News</span>
-                            <span class="time-starts">12:10pm</span>
-                            <span class="duration">5 minutes</span>
-                        </a>
-                    </dd>
-                    <dd class="broadcast" data-episode-id="b01qdx9l">
-                        <a href="http://www.bbc.co.uk/programmes/b01qdx9l">
-                            <span class="title">Football Focus</span>
-                            <span class="time-starts">12:15pm</span>
-                            <span class="duration">45 minutes</span>
-                        </a>
-                    </dd>
-                </dl>
+            <div class="component schedule-container" data-template="channel-schedule">
             </div>
         </div>
     </div>

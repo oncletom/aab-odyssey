@@ -1,0 +1,14 @@
+<dl class="component timeline timeline-vertical">
+  <!-- <dt class="title">{{title}}</dt> -->
+  <!-- {{#subtitle}}<dt class="subtitle"><span>{{subtitle}}</span></dt>{{/subtitle}} -->
+
+  {{#each broadcasts}}
+      <dd class="broadcast" data-episode-id="{{episode_pid}}">
+          <a href="http://www.bbc.co.uk/programmes/{{episode_pid}}">
+              <span class="title">{{title}}</span>
+              <span class="metadata time-starts">{{start_date}}</span>
+              <span class="metadata duration">{{duration}}</span>
+          </a>
+      </dd>
+  {{/each}}
+</dl>
