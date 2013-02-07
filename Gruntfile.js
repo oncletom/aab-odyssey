@@ -9,7 +9,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('build', ['concat', 'less', 'handlebars', 'uglify', 'copy:dist']);
+  grunt.registerTask('build', ['less', 'handlebars', 'uglify', 'copy:dist']);
 
   // Project configuration.
   grunt.initConfig({
@@ -20,16 +20,6 @@ module.exports = function(grunt) {
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    // Task configuration.
-    concat: {
-      options: {
-        stripBanners: true
-      },
-      jquip: {
-        src: [ 'components/jquip/src/jquip.js', 'components/jquip/src/jquip.ajax.js' ],
-        dest: 'src/vendor/jquip.js'
-      }
-    },
     handlebars: {
       core: {
         files: {
@@ -46,8 +36,12 @@ module.exports = function(grunt) {
         banner: '<%= banner %>'
       },
       core: {
-        src: [ 'src/vendor/jquip.js', 'components/handlebars/handlebars.runtime.js', 'src/vendor/templates.js' ],
+        src: [ 'components/zepto/zepto.js', 'components/handlebars/handlebars.runtime.js', 'src/vendor/templates.js' ],
         dest: 'dist/js/core.min.js'
+      },
+      controllers: {
+        src: [ 'src/js/lib/**/*.js', 'src/js/controllers/**/*.js', 'src/js/*.js' ],
+        dest: 'dist/js/controllers.min.js'
       }
     },
     less: {
@@ -89,8 +83,8 @@ module.exports = function(grunt) {
         tasks: ['jshint:gruntfile']
       },
       js: {
-        files: '<%= uglify.core.src %>',
-        tasks: [ 'uglify', 'copy', 'jshint' ]
+        files: '<%= uglify.controllers.src %>',
+        tasks: [ 'uglify:controllers', 'jshint' ]
       },
       less: {
         files: 'src/less/**/*.less',
@@ -102,7 +96,7 @@ module.exports = function(grunt) {
       },
       templates: {
         files: [ 'src/templates/*.hbs' ],
-        tasks: [ 'handlebars', 'uglify', 'copy' ]
+        tasks: [ 'handlebars', 'uglify:core', 'copy' ]
       }
     }
   });
