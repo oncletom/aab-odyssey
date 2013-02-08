@@ -13,7 +13,6 @@ function ChannelsController($){
   }
 
   function refreshComponent(e){
-    console.log(e.data);
     $('[data-template="channels-list"][data-variant="component"]').html(
       AAB['channels-list-component']({items: e.data || []})
     );
