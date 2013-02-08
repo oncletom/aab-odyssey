@@ -7,11 +7,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['jshint']);
   grunt.registerTask('build', ['less', 'handlebars', 'uglify', 'copy:dist']);
+  grunt.registerTask('tests', ['jshint', 'simplemocha']);
 
   // Project configuration.
   grunt.initConfig({
@@ -68,6 +70,13 @@ module.exports = function(grunt) {
       frontend: {
         src: 'src/js/**/*.js'
       }
+    },
+    simplemocha: {
+      options: {
+        ignoreLeaks: false,
+        ui: 'tdd'
+      },
+      all: { src: 'tests/unit/**/*.js' }
     },
     copy: {
       dist: {

@@ -16,10 +16,15 @@ function Channel(){
  * Factory from JSON record
  *
  * @static
+ * @throws Error if the item parameter is not a valid object
  * @param {Object} item Some object from a JSON response
  */
 Channel.fromJSON = function fromJSON(item){
   var channel = new Channel();
+
+  if (typeof item !== 'object'){
+    throw new Error('item is not a valid object.');
+  }
 
   Object.keys(channel).forEach(function(key){
     if (item[key] !== undefined){
