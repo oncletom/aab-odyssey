@@ -1,3 +1,4 @@
+"use strict";
 
 function ChannelsController($){
   /** @param {ChannelsController} self */
@@ -12,6 +13,10 @@ function ChannelsController($){
     );
   }
 
+  /**
+   * Updates Channels component
+   * @param {Event} e
+   */
   function refreshComponent(e){
     $('[data-template="channels-list"][data-variant="component"]').html(
       AAB['channels-list-component']({items: e.data || []})
@@ -31,6 +36,11 @@ function ChannelsController($){
   })();
 }
 
+/**
+ * Retrieves Channels list and trigger a UI refresh
+ *
+ * @event channels:update
+ */
 ChannelsController.prototype.update = function update(){
   var broadcaster = this.broadcaster;
 
