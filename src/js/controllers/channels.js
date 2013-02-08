@@ -8,14 +8,14 @@ function ChannelsController($){
 
   function refreshMenu(e){
     $('[data-template="channels-list"][data-variant="nav"]').html(
-      AAB['src/templates/channels-list-nav.hbs']({items: e.data || []})
+      AAB['channels-list-nav']({items: e.data || []})
     );
   }
 
   function refreshComponent(e){
     console.log(e.data);
     $('[data-template="channels-list"][data-variant="component"]').html(
-      AAB['src/templates/channels-list-component.hbs']({items: e.data || []})
+      AAB['channels-list-component']({items: e.data || []})
     );
   }
 

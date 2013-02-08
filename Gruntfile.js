@@ -1,4 +1,6 @@
 /*global module:false*/
+var path = require('path');
+
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -27,7 +29,11 @@ module.exports = function(grunt) {
         },
         options: {
           namespace: 'AAB',
-          wrapped: true
+          wrapped: true,
+          processName: function(filename) {
+            var ext = path.extname(filename);
+            return path.basename(filename).replace(ext, '');
+          }
         }
       }
     },
