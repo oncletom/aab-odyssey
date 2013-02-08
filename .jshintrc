@@ -10,9 +10,14 @@
   "boss": true,
   "eqnull": true,
   "node": false,
+  "browser": true,
+  "strict": true,
   "es5": true,
 
   "globals": {
-    "jQuery": true
+    "Zepto": true,
+    "$": true,
+    "AAB": true,
+    "Channel": true
   }
 }

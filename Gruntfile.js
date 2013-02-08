@@ -1,4 +1,4 @@
-/*global module:false*/
+/*global module:false node:true*/
 var path = require('path');
 
 module.exports = function(grunt) {
@@ -63,16 +63,10 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        jshintrc: '.jshintrc',
-        globals: {
-          jQuery: true
-        }
+        jshintrc: '.jshintrc'
       },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib_test: {
-        src: ['lib/**/*.js', 'test/**/*.js']
+      frontend: {
+        src: 'src/js/**/*.js'
       }
     },
     copy: {
@@ -84,13 +78,9 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
       js: {
         files: '<%= uglify.controllers.src %>',
-        tasks: [ 'uglify:controllers', 'jshint' ]
+        tasks: [ 'uglify:controllers', 'jshint:frontend' ]
       },
       less: {
         files: 'src/less/**/*.less',
