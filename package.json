@@ -4,7 +4,8 @@
   "description": "A journey into the flow of broadcasting.",
   "main": "grunt Gruntfile.js",
   "scripts": {
-    "test": "casper test tests/cases"
+    "test": "casper test tests/cases",
+    "postinstall": "grunt build"
   },
   "repository": {
     "type": "git",
