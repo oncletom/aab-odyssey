@@ -12,12 +12,14 @@
   "node": false,
   "browser": true,
   "strict": true,
+  "globalstrict": true,
   "es5": true,
 
   "globals": {
     "Zepto": true,
     "$": true,
     "AAB": true,
-    "Channel": true
+    "Channel": true,
+    "ChannelsController": true
   }
 }

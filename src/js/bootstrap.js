@@ -1,7 +1,9 @@
+"use strict";
+
 (function($, document){
   var controllers = [ChannelsController];
 
-  controllers.forEach(function(controller){
-    new controller($);
+  controllers.forEach(function(Controller){
+    new Controller($);
   });
 })(Zepto, document);
