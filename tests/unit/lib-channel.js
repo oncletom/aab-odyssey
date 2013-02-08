@@ -1,7 +1,17 @@
 "use strict";
 
 suite('Channel Library', function(){
-  var accepted_keys = ['id', 'name', 'sort_order', 'image'];
+  var defaults, accepted_keys;
+
+  testSuite(function(){
+    defaults = {
+      id: null,
+      name: '',
+      sort_order: 0,
+      image: null
+    };
+    accepted_keys = Object.keys(defaults)
+  });
 
   test('constructor', function(){
     expect(function(){ new Channel() }).not.to.throwException();
@@ -22,7 +32,7 @@ suite('Channel Library', function(){
       expect(item).to.only.have.keys(accepted_keys);
 
       accepted_keys.forEach(function(key){
-        expect(item[key]).to.be(json[key]);
+        expect(item[key]).to.be(json[key] === undefined ? defaults[key] : json[key]);
       });
     });
   });

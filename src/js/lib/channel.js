@@ -31,6 +31,8 @@ Channel.fromJSON = function fromJSON(item){
       channel[key] = item[key];
     }
   });
+
+  return channel;
 };
 
 /**
