@@ -20,6 +20,8 @@
     "$": true,
     "AAB": true,
     "Channel": true,
-    "ChannelsController": true
+    "ChannelsController": true,
+    "Bookmark": true,
+    "Broadcast": true
   }
 }
