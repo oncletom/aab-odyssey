@@ -1,10 +1,8 @@
 "use strict";
 
-var expect = require('expect.js');
-
 suite('Channel Library', function(){
   test('constructor', function(){
-    expect(true).to.be(false);
+    expect(new Channel()).to.only.have.keys('id', 'name', 'sort_order', 'image');
   });
 
   test.skip('#fromJSON()', function(){

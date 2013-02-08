@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Browser Test Suite</title>
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" type="text/css" charset="utf-8" />
+</head>
+<body>
+<!-- Required for browser reporter -->
+<div id="mocha"></div>
+
+<!-- mocha -->
+<script src="../node_modules/mocha/mocha.js"></script>
+<script>
+    mocha.setup({
+        ui: 'tdd'
+    });
+</script>
+
+<!-- Include your assertion lib of choice -->
+<script src="../node_modules/expect.js/expect.js"></script>
+<script src="../dist/js/core.min.js"></script>
+
+<!-- Include anything you want to test -->
+<script src="../src/js/lib/bookmark.js"></script>
+<script src="../src/js/lib/broadcast.js"></script>
+<script src="../src/js/lib/channel.js"></script>
+
+<!-- Spec files -->
+<script src="unit/lib-bookmark.js"></script>
+<script src="unit/lib-broadcast.js"></script>
+<script src="unit/lib-channel.js"></script>
+<script>
+    if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+        mocha.run();
+    }
+</script>
+</body>
+</html>

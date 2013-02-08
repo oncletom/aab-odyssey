@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
@@ -71,12 +71,13 @@ module.exports = function(grunt) {
         src: 'src/js/**/*.js'
       }
     },
-    simplemocha: {
-      options: {
-        ignoreLeaks: false,
-        ui: 'tdd'
-      },
-      all: { src: 'tests/unit/**/*.js' }
+    mocha: {
+      all: {
+        src: 'tests/*.html',
+        options: {
+          run: true
+        }
+      }
     },
     copy: {
       dist: {
