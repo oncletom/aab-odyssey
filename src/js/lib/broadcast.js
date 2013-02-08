@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Bookmark Object
+ * Broadcast Object
  *
  * @constructor
  */
