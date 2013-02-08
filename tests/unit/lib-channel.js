@@ -1,24 +1,26 @@
 "use strict";
 
-suite('Channel Library', function(){
+suite('Channel Library', function () {
   var defaults, accepted_keys;
 
-  suiteSetup(function(){
+  suiteSetup(function () {
     defaults = {
-      id: null,
-      name: '',
+      id:         null,
+      name:       '',
       sort_order: 0,
-      image: null
+      image:      null
     };
     accepted_keys = Object.keys(defaults)
   });
 
-  test('constructor', function(){
-    expect(function(){ new Channel() }).not.to.throwException();
+  test('constructor', function () {
+    expect(function () {
+      new Channel()
+    }).not.to.throwException();
     expect(new Channel()).to.only.have.keys(accepted_keys);
   });
 
-  test('#fromJSON()', function(){
+  test('#fromJSON()', function () {
     var item = new Channel();
     var data = [
       {},
@@ -26,18 +28,23 @@ suite('Channel Library', function(){
     ];
 
     // Checking we have the proper values for each objects
-    data.forEach(function(json){
+    data.forEach(function (json) {
       item = Channel.fromJSON(json);
 
       expect(item).to.only.have.keys(accepted_keys);
 
-      accepted_keys.forEach(function(key){
+      accepted_keys.forEach(function (key) {
         expect(item[key]).to.be(json[key] === undefined ? defaults[key] : json[key]);
       });
     });
   });
 
-  test.skip('#getList()', function(){
+  test('#getList()', function (done) {
+    Channel.getList(function (channels) {
+      expect(channels.length).to.be(4);
+      expect(channels[0]).to.be.a(Channel);
 
+      done();
+    });
   });
 });
