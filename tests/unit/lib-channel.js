@@ -3,7 +3,7 @@
 suite('Channel Library', function(){
   var defaults, accepted_keys;
 
-  testSuite(function(){
+  suiteSetup(function(){
     defaults = {
       id: null,
       name: '',
