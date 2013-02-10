@@ -14,9 +14,7 @@ suite('Channel Library', function () {
   });
 
   test('constructor', function () {
-    expect(function () {
-      new Channel()
-    }).not.to.throwException();
+    expect(function () { new Channel() }).not.to.throwException();
     expect(new Channel()).to.only.have.keys(accepted_keys);
   });
 
