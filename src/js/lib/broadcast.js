@@ -15,6 +15,22 @@ function Broadcast(){
   this.image = null;
 }
 
+Broadcast.prototype.start_hour = function start_hour(){
+  var hour = null;
+
+  this.start_date.replace(/T(\d{2}:\d{2})/, function(m, block){
+    hour = block;
+  });
+
+  return hour;
+};
+
+Broadcast.prototype.duration_in_minutes = function duration_in_minutes(){
+  var duration = this.duration / 60;
+
+  return duration;
+};
+
 /**
  * Factory from JSON record
  *
