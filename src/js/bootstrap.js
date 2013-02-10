@@ -1,7 +1,7 @@
 "use strict";
 
 (function($, document){
-  var controllers = [ChannelsController];
+  var controllers = [AppStatesController, ChannelsController];
 
   controllers.forEach(function(Controller){
     new Controller($);

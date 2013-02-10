@@ -22,6 +22,7 @@
     "Channel": true,
     "ChannelsController": true,
     "Bookmark": true,
-    "Broadcast": true
+    "Broadcast": true,
+    "AppStatesController": true
   }
 }
