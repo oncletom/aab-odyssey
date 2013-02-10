@@ -5,9 +5,8 @@ function ChannelsController($, settings){
   var self = this;
 
   self.storage = null;
+  self.broadcaster = null;
   self.settings = settings;
-
-  var broadcaster = self.broadcaster = $(document);
 
 
   function refreshMenu(e){
@@ -39,10 +38,15 @@ function ChannelsController($, settings){
     });
   }
 
-  function displayChannelSchedule(e){
+  function displayChannel(e){
+    var channel = getChannel(e.data.hash);
+    var date = new Date(self.settings['date-start'] || '');
+
     $('#channel-schedule').html(
-      AAB['channel-component']( getChannel(e.data.hash) )
+      AAB['channel-component'](channel)
     );
+
+    self.broadcaster.trigger('broadcasts:show', [channel, date]);
   }
 
   function getChannel(id){
@@ -62,15 +66,15 @@ function ChannelsController($, settings){
   /*
    * Initialization
    */
-  (function init(){
-    broadcaster.on('channels:update', $.proxy(refreshMenu, self));
-    broadcaster.on('channels:update', $.proxy(refreshComponent, self));
-    broadcaster.on('state:is:channel-schedule', $.proxy(activateChannelItem, self));
-    broadcaster.on('state:is:channel-schedule', $.proxy(displayChannelSchedule, self));
+  self.init = function init(){
+    self.broadcaster.on('channels:update', $.proxy(refreshMenu, self));
+    self.broadcaster.on('channels:update', $.proxy(refreshComponent, self));
+    self.broadcaster.on('state:is:channel-schedule', $.proxy(activateChannelItem, self));
+    self.broadcaster.on('state:is:channel-schedule', $.proxy(displayChannel, self));
 
     // Process things
     self.update();
-  })();
+  };
 }
 
 /**

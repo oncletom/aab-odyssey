@@ -4,19 +4,20 @@ function AppStatesController($){
   /** @param {ChannelsController} self */
   var self = this;
 
-  var broadcaster = self.broadcaster = $(document);
+  this.broadcaster = null;
+
   var state = self.state = null;
 
   /*
    * Initialization
    */
-  (function init(){
+  self.init = function init(){
     self.setState('init');
 
     $('[data-state-controller]').forEach(function(el){
       self.observe(el);
     });
-  })();
+  };
 }
 
 AppStatesController.prototype.observe = function observe(el, event){

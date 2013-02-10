@@ -15,6 +15,7 @@ function Channel(){
 /**
  * Factory from JSON record
  *
+ * @todo almost identical as `Broadcast.fromJSON` — factorization or ODM usage
  * @static
  * @throws Error if the item parameter is not a valid object
  * @param {Object} item Some object from a JSON response
