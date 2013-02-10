@@ -40,8 +40,8 @@ Channel.fromJSON = function fromJSON(item){
  *
  * @param callback
  */
-Channel.getList = function getList(callback){
-  $.getJSON('http://rd-broadcast-bookmarks.herokuapp.com/channels', function(response){
+Channel.getList = function getList(callback, baseuri){
+  $.getJSON(baseuri + '/channels', function(response){
     var channels = [];
 
     // Object to Array conversion

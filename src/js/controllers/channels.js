@@ -1,8 +1,11 @@
 "use strict";
 
-function ChannelsController($){
+function ChannelsController($, settings){
   /** @param {ChannelsController} self */
   var self = this;
+
+  self.storage = null;
+  self.settings = settings;
 
   var broadcaster = self.broadcaster = $(document);
 
@@ -38,8 +41,21 @@ function ChannelsController($){
 
   function displayChannelSchedule(e){
     $('#channel-schedule').html(
-      AAB['channel-component']({name: e.data.hash, id: e.data.hash })
+      AAB['channel-component']( getChannel(e.data.hash) )
     );
+  }
+
+  function getChannel(id){
+    var channel = null;
+
+    self.storage.channels.some(function(item){
+      if (item.id === id){
+        channel = item;
+        return true;
+      }
+    });
+
+    return channel;
   }
 
 
@@ -63,9 +79,11 @@ function ChannelsController($){
  * @event channels:update
  */
 ChannelsController.prototype.update = function update(){
-  var broadcaster = this.broadcaster;
+  var self = this;
 
   Channel.getList(function(response){
-    broadcaster.trigger('channels:update', response);
-  });
+    self.storage.channels = response;
+
+    self.broadcaster.trigger('channels:update', response);
+  }, self.settings['api-baseuri']);
 };
