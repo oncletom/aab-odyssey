@@ -11,3 +11,18 @@ main{
 .component{
   margin-bottom: @baseLineHeight * 2;
 }
+
+[data-loader]:empty{
+  background: hsla(hue(@navbarBackground), saturation(@navbarBackground), lightness(@navbarBackground), 0.15);
+  .border-radius(@baseBorderRadius);
+  min-height: 150px;
+
+  &::after{
+    color: @white;
+    content: "Loading…";
+    line-height: 150px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+  }
+}
