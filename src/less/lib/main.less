@@ -12,6 +12,8 @@ main{
   margin-bottom: @baseLineHeight * 2;
 }
 
+// Displays a loading indicator within a visual placeholder
+// Especially usefull if the content is retrieved from a remote location
 [data-loader]:empty{
   background: hsla(hue(@navbarBackground), saturation(@navbarBackground), lightness(@navbarBackground), 0.15);
   .border-radius(@baseBorderRadius);
@@ -20,6 +22,7 @@ main{
   &::after{
     color: @white;
     content: "Loading…";
+    display: block;
     line-height: 150px;
     text-align: center;
     vertical-align: middle;
