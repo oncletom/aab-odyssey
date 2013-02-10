@@ -36,6 +36,12 @@ function ChannelsController($){
     });
   }
 
+  function displayChannelSchedule(e){
+    $('#channel-schedule').html(
+      AAB['channel-component']({name: e.data.hash, id: e.data.hash })
+    );
+  }
+
 
   /*
    * Initialization
@@ -44,6 +50,7 @@ function ChannelsController($){
     broadcaster.on('channels:update', $.proxy(refreshMenu, self));
     broadcaster.on('channels:update', $.proxy(refreshComponent, self));
     broadcaster.on('state:is:channel-schedule', $.proxy(activateChannelItem, self));
+    broadcaster.on('state:is:channel-schedule', $.proxy(displayChannelSchedule, self));
 
     // Process things
     self.update();
