@@ -23,6 +23,19 @@ function ChannelsController($){
     );
   }
 
+  function activateChannelItem(e){
+    $('[data-template="channels-list"]').children().forEach(function(child){
+      var $child = $(child);
+
+      if ($child.find('a[href="#'+ e.data.hash +'"]').length){
+        $child.addClass('active');
+      }
+      else{
+        $child.removeClass('active');
+      }
+    });
+  }
+
 
   /*
    * Initialization
@@ -30,6 +43,7 @@ function ChannelsController($){
   (function init(){
     broadcaster.on('channels:update', $.proxy(refreshMenu, self));
     broadcaster.on('channels:update', $.proxy(refreshComponent, self));
+    broadcaster.on('state:is:channel-schedule', $.proxy(activateChannelItem, self));
 
     // Process things
     self.update();

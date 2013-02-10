@@ -37,7 +37,7 @@ AppStatesController.prototype.observe = function observe(el, event){
  */
 AppStatesController.prototype.setState = function setState(new_state, args){
   this.broadcaster.trigger('state:set', [new_state, this.state]);
-  this.broadcaster.trigger('state:is:' + new_state, [args]);
+  this.broadcaster.trigger('state:is:' + new_state, args);
 
   $('[data-state-visible]').forEach(function changeState(el){
     var $el = $(el);
