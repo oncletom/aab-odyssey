@@ -60,6 +60,16 @@ Broadcast.fromJSON = function fromJSON(item){
   return broadcast;
 };
 
+Broadcast.isAvailable = function isAvailable(baseuri, channel, date, success, error){
+  $.ajax({
+    type: 'HEAD',
+    url: baseuri + '/schedule/'+channel.id+'/'+ Utils.date.getDateParam( date ),
+    global: false,
+    success: success,
+    error: error
+  });
+};
+
 
 Broadcast.getList = function getList(baseuri, channel, date, callback){
   $.getJSON(baseuri + '/schedule/'+channel.id+'/'+ Utils.date.getDateParam( date ), function(response){
