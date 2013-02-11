@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git://github.com/oncletom/aab-odyssey.git"
   },
+  "engines": {
+    "node": "~0.8.0"
+  },
   "private": true,
   "author": "Thomas Parisot <thomas@oncle-tom.net>",
   "license": "BSD",
