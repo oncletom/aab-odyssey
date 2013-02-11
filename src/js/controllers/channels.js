@@ -39,7 +39,7 @@ function ChannelsController($, settings){
   }
 
   function displayChannel(e){
-    var channel = getChannel(e.data.hash);
+    var channel = Channel.getChannel(e.data.hash, self.storage.channels);
     var date = new Date(self.settings['date-start'] || '');
 
     $('#channel-schedule').html(
@@ -47,19 +47,6 @@ function ChannelsController($, settings){
     );
 
     self.broadcaster.trigger('broadcasts:show', [channel, date]);
-  }
-
-  function getChannel(id){
-    var channel = null;
-
-    self.storage.channels.some(function(item){
-      if (item.id === id){
-        channel = item;
-        return true;
-      }
-    });
-
-    return channel;
   }
 
 

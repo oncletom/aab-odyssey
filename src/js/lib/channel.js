@@ -53,3 +53,16 @@ Channel.getList = function getList(callback, baseuri){
     callback(channels);
   });
 };
+
+Channel.getChannel = function getChannel(id, storage){
+  var channel = null;
+
+  storage.some(function(item){
+    if (item.id === id){
+      channel = item;
+      return true;
+    }
+  });
+
+  return channel;
+};

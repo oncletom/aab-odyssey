@@ -28,10 +28,22 @@ function BroadcastsController($, settings){
     });
   }
 
+  function displayBroadcastsHandler(e){
+    var channel, date;
+
+    e.target.hash.replace(/^#([^\\]+)\/(.+)$/, function(m, c, d){
+      channel = Channel.getChannel(c, self.storage.channels);
+      date = new Date(d);
+    });
+
+    self.broadcaster.trigger('broadcasts:show', [channel, date]);
+  }
+
   /*
    * Initialization
    */
   self.init = function init(){
     self.broadcaster.on('broadcasts:show', $.proxy(displayBroadcasts, self));
+    self.broadcaster.on('click', 'a[data-broadcast="show"]', $.proxy(displayBroadcastsHandler, self));
   };
 }
