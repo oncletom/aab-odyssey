@@ -4,7 +4,6 @@ var path = require('path');
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-mocha');
@@ -12,7 +11,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('build', ['less', 'handlebars', 'uglify', 'copy:dist']);
+  grunt.registerTask('build', ['less', 'uglify', 'copy:dist']);
   grunt.registerTask('tests', ['jshint', 'mocha']);
 
   // Project configuration.
@@ -24,27 +23,12 @@ module.exports = function(grunt) {
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    handlebars: {
-      core: {
-        files: {
-          'src/vendor/templates.js': 'src/templates/*.hbs'
-        },
-        options: {
-          namespace: 'AAB',
-          wrapped: true,
-          processName: function(filename) {
-            var ext = path.extname(filename);
-            return path.basename(filename).replace(ext, '');
-          }
-        }
-      }
-    },
     uglify: {
       options: {
         banner: '<%= banner %>'
       },
       core: {
-        src: [ 'components/zepto/zepto.js', 'components/handlebars/handlebars.runtime.js', 'src/vendor/templates.js' ],
+        src: [ 'components/zepto/zepto.js', 'components/rivets/lib/rivets.js' ],
         dest: 'dist/js/core.min.js'
       },
       controllers: {

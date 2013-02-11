@@ -3,7 +3,7 @@
   "version": "1.0.0-dev",
   "dependencies": {
     "bootstrap": "~2.2.2",
-    "handlebars": "~1.0.0-rc.2",
-    "zepto": "latest"
+    "zepto": "latest",
+    "rivets": "~0.4.5"
   }
 }

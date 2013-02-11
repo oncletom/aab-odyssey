@@ -12,6 +12,21 @@
     });
   });
 
+  rivets.configure({
+    adapter: {
+      subscribe: function(obj, keypath, callback){
+      },
+      unsubscribe: function(obj, keypath, callback){
+      },
+      read: function(obj, keypath){
+        return 'length' in obj ? obj : obj[keypath];
+      },
+      publish: function(obj, keypath, value){
+        obj[keypath] = value;
+      }
+    }
+  });
+
   controllers.forEach(function(Controller){
     var c = new Controller($, settings);
 

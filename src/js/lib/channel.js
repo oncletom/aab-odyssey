@@ -6,10 +6,19 @@
  * @constructor
  */
 function Channel(){
+  var self = this;
+
   this.id = null;
   this.name = '';
   this.sort_order = 0;
   this.image = null;
+
+  Object.defineProperty(this, 'img_url', {
+    enumerable: true,
+    get: function(){
+      return '//rd-broadcast-bookmarks.herokuapp.com/' + self.image;
+    }
+  });
 }
 
 /**

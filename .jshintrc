@@ -18,7 +18,7 @@
   "globals": {
     "Zepto": true,
     "$": true,
-    "AAB": true,
+    "rivets": true,
     "Channel": true,
     "ChannelsController": true,
     "Bookmark": true,
