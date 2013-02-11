@@ -65,19 +65,18 @@
             <div class="component schedule-container" data-loader>
                 <div class="pagination">
                     <ul>
-                        <li><a href="#{{channel.id}}/{{previous_date}}" data-broadcast="show" data-text="previous_date"></a></li>
-                        <li class="active"><span data-text="date"></span></li>
-                        <li><a href="#{{channel.id}}/{{next_date}}" data-broadcast="show" data-text="next_date"></a></li>
+                        <li><a href="#{{channel.id}}/{{previous_date}}" data-broadcast="show" data-text="previous_date | date"></a></li>
+                        <li class="active"><span data-text="date | date"></span></li>
+                        <li><a href="#{{channel.id}}/{{next_date}}" data-broadcast="show" data-text="next_date | date"></a></li>
                     </ul>
                 </div>
 
-                <dl class="component timeline timeline-vertical" data-each-broadcast="broadcasts">
-                    <dt class="subtitle" data-show="broadcast.subtitle"><span data-text="broadcast.title"></span></dt>
-                    <dd class="broadcast">
+                <dl class="component timeline timeline-vertical">
+                    <dd class="broadcast" data-each-broadcast="broadcasts" data-subtitle="broadcast.subtitle">
                         <a data-href="broadcast.episode_pid | programme_url">
                             <span class="title" data-text="broadcast.title"></span>
-                            <span class="metadata time-starts" data-text="broadcast.start_date | hour"></span>
-                            <span class="metadata duration" data-text="broadcast.duration | minutes"></span>
+                            <span class="metadata time-starts" data-text="broadcast.hourtime"></span>
+                            <span class="metadata duration" data-text="broadcast.duration | in_minutes"></span>
                         </a>
                     </dd>
                 </dl>

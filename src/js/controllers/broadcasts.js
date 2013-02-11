@@ -14,7 +14,7 @@ function BroadcastsController($, settings){
     var next_date = date_utils.nextDay(date);
 
     Broadcast.getList(self.settings['api-baseuri'], channel, date, function(response){
-      rivets.bind($('.timeline').get(0), {
+      rivets.bind($('.schedule-container').get(0), {
         previous_date: previous_date,
         current_date: date,
         next_date: next_date,

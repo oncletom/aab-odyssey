@@ -6,6 +6,8 @@
  * @constructor
  */
 function Broadcast(){
+  var self = this;
+
   this.pid = null;
   this.start_date = null;
   this.end_date = null;
@@ -14,27 +16,21 @@ function Broadcast(){
   this.episode_pid = null;
   this.image = null;
   this.subtitle = '';
-}
 
-Broadcast.prototype.start_hour = function start_hour(){
-  return this.start_hourtime().split(':')[0];
-};
-
-Broadcast.prototype.start_hourtime = function start_hourtime(){
-  var hourtime = null;
-
-  this.start_date.replace(/T(\d{2}:\d{2})/, function(m, block){
-    hourtime = block;
+  Object.defineProperty(this, 'hourtime', {
+    enumerable: true,
+    get: function(){
+      return self.start_date.replace(/^.+T(\d{2}:\d{2}).+$/, '$1');
+    }
   });
 
-  return hourtime;
-};
-
-Broadcast.prototype.duration_in_minutes = function duration_in_minutes(){
-  var duration = this.duration / 60;
-
-  return duration;
-};
+  Object.defineProperty(this, 'start_hour', {
+    enumerable: true,
+    get: function(){
+      return self.start_date.replace(/^.+T(\d{2}).+$/, '$1');
+    }
+  });
+}
 
 /**
  * Factory from JSON record
@@ -80,9 +76,9 @@ Broadcast.getList = function getList(baseuri, channel, date, callback){
     broadcasts = response[ Object.keys(response)[0] ].map(function(data){
       var broadcast = Broadcast.fromJSON(data);
 
-      if (!tracker[ broadcast.start_hour() ]){
-        tracker[ broadcast.start_hour() ] = true;
-        broadcast.subtitle = broadcast.start_hour() + ':00';
+      if (!tracker[ broadcast.start_hour ]){
+        tracker[ broadcast.start_hour ] = true;
+        broadcast.subtitle = broadcast.start_hour;
       }
 
       return broadcast;

@@ -19,7 +19,7 @@
       unsubscribe: function(obj, keypath, callback){
       },
       read: function(obj, keypath){
-        return 'length' in obj ? obj : obj[keypath];
+        return keypath in obj ? obj[keypath] : obj;
       },
       publish: function(obj, keypath, value){
         obj[keypath] = value;
