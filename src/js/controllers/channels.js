@@ -34,9 +34,10 @@ function ChannelsController($, settings){
     var channel = Channel.getChannel(e.data.hash, self.storage.channels);
     var date = new Date(self.settings['date-start'] || '');
 
-    /*$('#channel-schedule').html(
-      AAB['channel-component'](channel)
-    );*/
+    rivets.bind($('#channel-schedule').get(0), {
+      date: date,
+      channel: channel
+    });
 
     self.broadcaster.trigger('broadcasts:show', [channel, date]);
   }

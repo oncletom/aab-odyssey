@@ -14,17 +14,12 @@ function BroadcastsController($, settings){
     var next_date = date_utils.nextDay(date);
 
     Broadcast.getList(self.settings['api-baseuri'], channel, date, function(response){
-      $('[data-template="channel-schedule"]').html(
-        AAB['channel-schedule-component']({
-          channel: channel,
-          current_date: date.toLocaleDateString(),
-          previous_date: date_utils.getDateParam( previous_date ),
-          previous_date_string: previous_date.toLocaleDateString(),
-          next_date: date_utils.getDateParam( next_date ),
-          next_date_string: next_date.toLocaleDateString(),
-          broadcasts: response
-        })
-      );
+      rivets.bind($('.timeline').get(0), {
+        previous_date: previous_date,
+        current_date: date,
+        next_date: next_date,
+        broadcasts: response
+      });
 
       self.broadcaster.trigger('broadcasts:shown', [channel, date]);
     });
