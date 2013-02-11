@@ -31,8 +31,11 @@ function BroadcastsController($, settings){
     var next_date = date_utils.nextDay(date);
 
     [previous_date, next_date].forEach(function(d){
-      Broadcast.isAvailable(self.settings['api-baseuri'], channel, d, function(){}, function(){
-        $('a[data-schedule="'+Utils.date.getDateParam(d)+'"]').parent().addClass('disabled');
+      var $parent = $('a[data-schedule="'+Utils.date.getDateParam(d)+'"]').parent();
+      Broadcast.isAvailable(self.settings['api-baseuri'], channel, d, function(){
+        $parent.removeClass('disabled');
+      }, function(){
+        $parent.addClass('disabled');
       });
     });
   }
