@@ -45,7 +45,7 @@ function BroadcastsController($, settings){
     var channel, date;
 
     date = new Date(e.target.getAttribute('data-schedule'));
-    channel = e.target.hash.replace(/#/, '');
+    channel = Channel.getChannel( e.target.hash.replace(/#/, ''), self.storage.channels );
 
     self.broadcaster.trigger('broadcasts:show', [channel, date]);
   }
