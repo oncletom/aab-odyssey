@@ -32,6 +32,7 @@ function BroadcastsController($, settings){
 
     [previous_date, next_date].forEach(function(d){
       var $parent = $('a[data-schedule="'+Utils.date.getDateParam(d)+'"]').parent();
+
       Broadcast.isAvailable(self.settings['api-baseuri'], channel, d, function(){
         $parent.removeClass('disabled');
       }, function(){
@@ -44,9 +45,7 @@ function BroadcastsController($, settings){
     var channel, date;
 
     date = new Date(e.target.getAttribute('data-schedule'));
-    e.target.hash.replace(/^#([^\\]+)$/, function(m, c, d){
-      channel = Channel.getChannel(c, self.storage.channels);
-    });
+    channel = e.target.hash.replace(/#/, '');
 
     self.broadcaster.trigger('broadcasts:show', [channel, date]);
   }
