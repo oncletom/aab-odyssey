@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['jshint']);
   grunt.registerTask('build', ['less', 'handlebars', 'uglify', 'copy:dist']);
-  grunt.registerTask('tests', ['jshint', 'simplemocha']);
+  grunt.registerTask('tests', ['jshint', 'mocha']);
 
   // Project configuration.
   grunt.initConfig({

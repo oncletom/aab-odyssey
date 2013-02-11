@@ -2,6 +2,7 @@
 
 suite('Channel Library', function () {
   var defaults, accepted_keys;
+  var baseuri = 'http://rd-broadcast-bookmarks.herokuapp.com';
 
   suiteSetup(function () {
     defaults = {
@@ -43,6 +44,6 @@ suite('Channel Library', function () {
       expect(channels[0]).to.be.a(Channel);
 
       done();
-    });
+    }, baseuri);
   });
 });
