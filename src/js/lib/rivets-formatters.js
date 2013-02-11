@@ -4,6 +4,10 @@
     return value.toLocaleDateString();
   };
 
+  r.formatters.date_ymd = function(value){
+    return value.toISOString().split('T')[0];
+  };
+
   r.formatters.in_minutes = function(value){
     return value / 60;
   };

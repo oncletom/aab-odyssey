@@ -32,7 +32,7 @@ function BroadcastsController($, settings){
 
     [previous_date, next_date].forEach(function(d){
       Broadcast.isAvailable(self.settings['api-baseuri'], channel, d, function(){}, function(){
-        $('a[href="#'+channel.id+'/'+Utils.date.getDateParam(d)+'"]').parent().addClass('disabled');
+        $('a[data-schedule="'+Utils.date.getDateParam(d)+'"]').parent().addClass('disabled');
       });
     });
   }

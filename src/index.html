@@ -65,9 +65,9 @@
             <div class="component schedule-container" data-loader>
                 <div class="pagination">
                     <ul>
-                        <li><a href="#{{channel.id}}/{{previous_date}}" data-broadcast="show" data-text="previous_date | date"></a></li>
+                        <li><a data-href="channel.anchor" data-broadcast="show" data-data-schedule="previous_date | date_ymd" data-text="previous_date | date"></a></li>
                         <li class="active"><span data-text="date | date"></span></li>
-                        <li><a href="#{{channel.id}}/{{next_date}}" data-broadcast="show" data-text="next_date | date"></a></li>
+                        <li><a data-href="channel.anchor" data-broadcast="show" data-data-schedule="next_date | date_ymd" data-text="next_date | date"></a></li>
                     </ul>
                 </div>
 
