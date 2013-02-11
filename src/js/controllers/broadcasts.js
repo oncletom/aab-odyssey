@@ -10,14 +10,18 @@ function BroadcastsController($, settings){
 
   function displayBroadcasts(e, channel, date){
     var date_utils = Utils.date;
+    var previous_date = date_utils.previousDay(date);
+    var next_date = date_utils.nextDay(date);
 
     Broadcast.getList(self.settings['api-baseuri'], channel, date, function(response){
       $('[data-template="channel-schedule"]').html(
         AAB['channel-schedule-component']({
           channel: channel,
-          current_date: date,
-          previous_date: date_utils.getDateParam( date_utils.previousDay(date) ),
-          next_date: date_utils.getDateParam( date_utils.nextDay(date) ),
+          current_date: date.toLocaleDateString(),
+          previous_date: date_utils.getDateParam( previous_date ),
+          previous_date_string: previous_date.toLocaleDateString(),
+          next_date: date_utils.getDateParam( next_date ),
+          next_date_string: next_date.toLocaleDateString(),
           broadcasts: response
         })
       );
