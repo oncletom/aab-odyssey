@@ -13,16 +13,21 @@ function Broadcast(){
   this.title = null;
   this.episode_pid = null;
   this.image = null;
+  this.subtitle = '';
 }
 
 Broadcast.prototype.start_hour = function start_hour(){
-  var hour = null;
+  return this.start_hourtime().split(':')[0];
+};
+
+Broadcast.prototype.start_hourtime = function start_hourtime(){
+  var hourtime = null;
 
   this.start_date.replace(/T(\d{2}:\d{2})/, function(m, block){
-    hour = block;
+    hourtime = block;
   });
 
-  return hour;
+  return hourtime;
 };
 
 Broadcast.prototype.duration_in_minutes = function duration_in_minutes(){
@@ -57,17 +62,22 @@ Broadcast.fromJSON = function fromJSON(item){
 
 
 Broadcast.getList = function getList(baseuri, channel, date, callback){
-  $.getJSON(baseuri + '/schedule/'+channel.id+'/'+ Broadcast.getDateParam( date ), function(response){
+  $.getJSON(baseuri + '/schedule/'+channel.id+'/'+ Utils.date.getDateParam( date ), function(response){
     var broadcasts = [];
+    var tracker = {};
 
-    broadcasts = response[ Object.keys(response)[0] ].map(function(broadcast){
-      return Broadcast.fromJSON(broadcast);
+    // grabbing the broadcasts for the first and unique key item
+    broadcasts = response[ Object.keys(response)[0] ].map(function(data){
+      var broadcast = Broadcast.fromJSON(data);
+
+      if (!tracker[ broadcast.start_hour() ]){
+        tracker[ broadcast.start_hour() ] = true;
+        broadcast.subtitle = broadcast.start_hour() + ':00';
+      }
+
+      return broadcast;
     });
 
     callback(broadcasts);
   });
-};
-
-Broadcast.getDateParam = function getDateParam(date){
-  return date.toISOString().replace(/T.+$/, '');
 };

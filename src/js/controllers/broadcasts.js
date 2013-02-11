@@ -9,9 +9,17 @@ function BroadcastsController($, settings){
   self.settings = settings;
 
   function displayBroadcasts(e, channel, date){
+    var date_utils = Utils.date;
+
     Broadcast.getList(self.settings['api-baseuri'], channel, date, function(response){
       $('[data-template="channel-schedule"]').html(
-        AAB['channel-schedule-component']({broadcasts: response})
+        AAB['channel-schedule-component']({
+          channel: channel,
+          current_date: date,
+          previous_date: date_utils.getDateParam( date_utils.previousDay(date) ),
+          next_date: date_utils.getDateParam( date_utils.nextDay(date) ),
+          broadcasts: response
+        })
       );
     });
   }

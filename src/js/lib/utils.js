@@ -6,6 +6,10 @@ var Utils = {};
  */
 Utils.date = {};
 
+Utils.date.getDateParam = function getDateParam(date){
+  return date.toISOString().replace(/T.+$/, '');
+};
+
 Utils.date.shiftDay = function shiftDay(date, days){
   return new Date(date.getTime() + ((parseInt(days, 10)*24) * 60*60*1000));
 };
