@@ -19,6 +19,13 @@ function Channel(){
       return '//rd-broadcast-bookmarks.herokuapp.com/' + self.image;
     }
   });
+
+  Object.defineProperty(this, 'anchor', {
+    enumerable: true,
+    get: function(){
+      return '#' + self.id;
+    }
+  });
 }
 
 /**

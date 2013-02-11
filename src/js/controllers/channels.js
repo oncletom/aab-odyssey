@@ -9,20 +9,12 @@ function ChannelsController($, settings){
   self.settings = settings;
 
 
-  function refreshMenu(e){
-    $('[data-template="channels-list"][data-variant="nav"]').html(
-      AAB['channels-list-nav']({items: e.data || []})
-    );
-  }
-
-  /**
-   * Updates Channels component
-   * @param {Event} e
-   */
-  function refreshComponent(e){
-    $('[data-template="channels-list"][data-variant="component"]').html(
-      AAB['channels-list-component']({items: e.data || []})
-    );
+  function updateUI(e){
+    $('.navbar-static-top .nav, #channels-list').forEach(function(el){
+      rivets.bind(el, {
+        channels: e.data
+      });
+    });
   }
 
   function activateChannelItem(e){
@@ -42,9 +34,9 @@ function ChannelsController($, settings){
     var channel = Channel.getChannel(e.data.hash, self.storage.channels);
     var date = new Date(self.settings['date-start'] || '');
 
-    $('#channel-schedule').html(
+    /*$('#channel-schedule').html(
       AAB['channel-component'](channel)
-    );
+    );*/
 
     self.broadcaster.trigger('broadcasts:show', [channel, date]);
   }
@@ -54,8 +46,7 @@ function ChannelsController($, settings){
    * Initialization
    */
   self.init = function init(){
-    self.broadcaster.on('channels:update', $.proxy(refreshMenu, self));
-    self.broadcaster.on('channels:update', $.proxy(refreshComponent, self));
+    self.broadcaster.on('channels:update', $.proxy(updateUI, self));
     self.broadcaster.on('state:is:channel-schedule', $.proxy(activateChannelItem, self));
     self.broadcaster.on('state:is:channel-schedule', $.proxy(displayChannel, self));
 
