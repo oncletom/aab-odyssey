@@ -83,10 +83,6 @@ module.exports = function(grunt) {
       html: {
         files: [ 'src/**/*.html' ],
         tasks: [ 'copy' ]
-      },
-      templates: {
-        files: [ 'src/templates/*.hbs' ],
-        tasks: [ 'handlebars', 'uglify:core', 'copy' ]
       }
     }
   });
