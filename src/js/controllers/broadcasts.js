@@ -8,18 +8,31 @@ function BroadcastsController($, settings){
   self.broadcaster = null;
   self.settings = settings;
 
+  /*
+   * Hackish way of rebuilding a data-each-* collection
+   * @see https://github.com/mikeric/rivets/issues/118
+   */
+  function clearBroadcasts(){
+    $('.timeline dd.broadcast').slice(1).remove();
+    $('.timeline dt').remove();
+    $('.timeline dd.broadcast').attr('data-each-broadcast', 'broadcasts');
+  }
+
   function displayBroadcasts(e, channel, date){
     var date_utils = Utils.date;
     var previous_date = date_utils.previousDay(date);
     var next_date = date_utils.nextDay(date);
 
     Broadcast.getList(self.settings['api-baseuri'], channel, date, function(response){
-      rivets.bind($('.schedule-container').get(0), {
+      var models = {
         previous_date: previous_date,
         current_date: date,
         next_date: next_date,
         broadcasts: response
-      });
+      };
+
+      clearBroadcasts();
+      rivets.bind($('.schedule-container').get(0), models);
 
       self.broadcaster.trigger('broadcasts:shown', [channel, date]);
     });
