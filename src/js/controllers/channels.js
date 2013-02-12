@@ -18,7 +18,7 @@ function ChannelsController($, settings){
   }
 
   function activateChannelItem(e){
-    $('[data-template="channels-list"]').children().forEach(function(child){
+    $('.navbar-static-top .nav').children().forEach(function(child){
       var $child = $(child);
 
       if ($child.find('a[href="#'+ e.data.hash +'"]').length){
